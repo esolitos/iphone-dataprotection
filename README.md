@@ -5,4 +5,7 @@ iPhone Data Protection Tools cloned from https://code.google.com/p/iphone-datapr
 To use it, first install dependencies.
 
 `brew install swig`
+
 `pip install --user M2Crypto`
+
+`pip install --user pycrypto`
