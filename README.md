@@ -1,7 +1,8 @@
-
 iPhone Data Protection Tools cloned from https://code.google.com/p/iphone-dataprotection on January 24, 2015.
 
-Code ("build_tools.sh") slightly changed for OS X Yosemite (v 10.10.x):
-- "build_tools.sh"
+- This fork only cares about the backup extractor, all the rest has been removed.
 
-By Raul Siles
+To use it, first install dependencies.
+
+`brew install swig`
+`pip install --user M2Crypto`
