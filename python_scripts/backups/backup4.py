@@ -142,7 +142,8 @@ class MBDB(object):
             return
 
         # write output file
-        out_file = re.sub(r'[:|*<>?"]', "_", out_file)
+        # Cannot escape characters as we did not do it for the directories.
+        # out_file = re.sub(r'[:|*<>?"]', "_", out_file)
         output_path = os.path.join(output_path, record.domain, out_file)
         print("Writing %s" % output_path)
         f2 = file(output_path, 'wb')
