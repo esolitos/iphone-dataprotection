@@ -110,23 +110,14 @@ class MBDB(object):
             if v.path == filename:
                 return (k, v)
         return None
-    
-    def extract_backup(self, output_path):
-        for record in self.files.values():
-            # create directories if they do not exist
-            # makedirs throw an exception, my code is ugly =)
-            if record.is_directory():
-                try:
-                    os.makedirs(os.path.join(output_path, record.domain, record.path))
-                except:
-                    pass
 
+    def extract_backup(self, output_path):
         for (filename, record) in self.files.items():
             # skip directories
             if record.is_directory():
                 continue
             self.extract_file(filename, record, output_path)
-    
+
     def extract_file(self, filename, record, output_path):
         # adjust output file name
         if record.is_symbolic_link():
@@ -145,6 +136,10 @@ class MBDB(object):
         # Cannot escape characters as we did not do it for the directories.
         # out_file = re.sub(r'[:|*<>?"]', "_", out_file)
         output_path = os.path.join(output_path, record.domain, out_file)
+
+        # Create the directory if necessary
+        os.makedirs(os.path.dirname(output_path))
+
         print("Writing %s" % output_path)
         f2 = file(output_path, 'wb')
 
