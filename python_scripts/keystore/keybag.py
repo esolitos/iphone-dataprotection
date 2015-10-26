@@ -165,7 +165,9 @@ class Keybag(object):
 
     def getPasscodekeyFromPasscode(self, passcode):
         if self.type == BACKUP_KEYBAG or self.type == OTA_KEYBAG:
-            return PBKDF2(passcode, self.attrs["SALT"], iterations=self.attrs["ITER"]).read(32)
+            a = PBKDF2(passcode, self.attrs["SALT"], iterations=self.attrs["ITER"]).read(32)
+            print ":".join("{:02x}".format(ord(c)) for c in a)
+            return a
         else:
             #Warning, need to run derivation on device with this result
             return PBKDF2(passcode, self.attrs["SALT"], iterations=1).read(32)
